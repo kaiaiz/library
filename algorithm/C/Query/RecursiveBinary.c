@@ -1,4 +1,4 @@
-//µİ¹éËã·¨µÄÕÛ°ë²éÕÒ
+ï»¿//é€’å½’ç®—æ³•çš„æŠ˜åŠæŸ¥æ‰¾
 //for example
 #include<stdio.h>
 int main()
@@ -8,13 +8,22 @@ int main()
 	int lower=0;
 	int length=10;
 	int high=length-1;
+	int result;
 	printf("please enter the array that you want");
-	printf("please enter a number");
+	for(int i=0;i<length;i++){
+		sacnf("%d",&array[i]);
+	}
+	printf("please enter a number you want to query");
 	sacnf("%d",&num);
-	array=RecurisiveBinary(array,lower,high,num);
+	result=recurisiveBinary(array,lower,high,num);
+	if(num<=-1){
+		printf("not find");
+	}else{
+		printf("the number of array[%d] is %d",num,result);
+	}
 	return 0;
 }
-int RecursiveBinary(int *array,int lower,int high,int num)
+int recursiveBinary(int *array,int lower,int high,int num)
 {
 	int mid;
 	if(low<high){
@@ -22,12 +31,12 @@ int RecursiveBinary(int *array,int lower,int high,int num)
 		if(array[mid]=num){
 			return mid;}
 		else if(array[mid]<num){
-			lowe=mid+1
+			lowe=mid+1;
 			}
 		else if(array[mid]>num){
 			high=mid-1;
 			}
-	return RecursiveBinary(array,num,low,high);
+	return recursiveBinary(array,num,low,high);
 		}
 	return -1;
 }
