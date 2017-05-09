@@ -84,6 +84,7 @@ int main(void)
 	printf("We successfully got a connection from %s:%d\n",inet_ntoa(ClientAddr,sin_addr),ntohs(ClientAddr,sin_port));//客户端IP地址（sin_addr:32位无符号长整型，需要转换成字符串显示），客户端端口从网络字节顺序变为本机地址
 	closesocket(ListeningSocket);//连接上就可以关闭服务端用于监听的套接字,也可以不关闭继续监听来自其他客户端套接字的请求
 	printf("We are waiting to receive data.");//有一个客户端连接上来就可以停止监听，然后等待客户端发送数据
+	//接收数据
 	char dataBuffer[1024];//定义一个字节数组作为缓存
     int ret;
 	if(ret=recv(NewConnection,dataBuffer,sizeof(dataBuffer),0)==SOCKET_ERROR){//客户端套接字，接收到的数据放到缓存中
@@ -95,6 +96,7 @@ int main(void)
 printf("We successfully received %d byte.\n",Ret);//从客户端接收到的字节数
 dataBuffer[ret]='\0';//从客户端接收到的数据缓存,加上'\0'作为结束
 printf("%s\n",dataBuffer);
+	5.关闭连接
 printf("We are now going to close the client connection.\n");//接收到数据可以断开连接
 closesocket(NewConnection);//关闭客户端套接字
 WSACleanup();//清理
